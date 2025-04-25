@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("theme-button").addEventListener("click", () => {
     const link = document.getElementById("theme-link")
     if (link.href.endsWith("styles.css")) {
-      link.href = "dark_theme_matte.css"
+      link.href = "dark_theme.css"
     } else {
       link.href = "styles.css"
     }
