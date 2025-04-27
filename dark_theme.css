@@ -23,6 +23,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
   
   body {
@@ -435,6 +436,28 @@
   }
   
   /* Button Styling */
+
+  #theme-button {
+    background: var(--button-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 10px 15px;
+    color: var(--primary-color);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  #theme-button:hover {
+    background: var(--button-hover);
+    border-color: var(--primary-color);
+  }
+
+
   .glass-button {
     background: var(--button-bg);
     border: 1px solid var(--border-color);

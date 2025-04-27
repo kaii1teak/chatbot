@@ -14,33 +14,32 @@ document.addEventListener("DOMContentLoaded", () => {
   const paymentTemplate = document.getElementById("payment-template")
   const citySelectionTemplate = document.getElementById("city-selection-template")
 
-
-//смена темы, убрать саму кнопку для нормального вида
-
   document.getElementById("theme-button").addEventListener("click", () => {
     const link = document.getElementById("theme-link")
+    const svgImage = document.getElementById("theme-icon") // Assuming you're using an <img> tag with id="theme-icon"
+
+    // Toggle stylesheets
     if (link.href.endsWith("styles.css")) {
-      link.href = "dark_theme.css"
+      link.href = "dark_theme.css" // Switch to dark theme
+      svgImage.src = "/dark.svg" // Change to dark theme icon
     } else {
-      link.href = "styles.css"
+      link.href = "styles.css" // Switch to light theme
+      svgImage.src = "/white.svg" // Change to light theme icon
     }
   })
 
+  let cities = []
 
-  // Cities data (cities_countries.json)
-let cities = []
+  fetch("cities_countries.json")
+    .then((response) => response.json())
+    .then((data) => {
+      cities = data
+      console.log("Cities loaded:", cities)
+    })
+    .catch((error) => {
+      console.error("City loading error:", error)
+    })
 
-fetch('cities_countries.json')
-  .then(response => response.json())
-  .then(data => {
-    cities = data
-    console.log("Cities loaded:", cities)
-  })
-  .catch(error => {
-    console.error("City loading error:", error)
-  })
-
-  
   // Chat state
   let chatState = {
     flightBooked: false,
@@ -100,8 +99,7 @@ fetch('cities_countries.json')
     {
       id: "r1",
       name: "Deluxe Room Ocean",
-      image:
-        "https://dam.melia.com/melia/file/9XzJqgSCEgfLbVXCmu7k.jpg",
+      image: "https://dam.melia.com/melia/file/9XzJqgSCEgfLbVXCmu7k.jpg",
       price: "€350/night",
       capacity: "2 Adults",
       bedType: "King Bed",
@@ -111,8 +109,7 @@ fetch('cities_countries.json')
     {
       id: "r2",
       name: "Master Suite Garden",
-      image:
-        "https://dam.melia.com/melia/file/Fe1jCDnGviMz5kxYMztq.jpg",
+      image: "https://dam.melia.com/melia/file/Fe1jCDnGviMz5kxYMztq.jpg",
       price: "€450/night",
       capacity: "2 Adults, 2 Children",
       bedType: "King Bed + Sofa Bed",
@@ -122,8 +119,7 @@ fetch('cities_countries.json')
     {
       id: "r3",
       name: "RedLevel Villa",
-      image:
-        "https://dam.melia.com/melia/file/DgvEzAU2JaXQAUdGTWXt.jpg",
+      image: "https://dam.melia.com/melia/file/DgvEzAU2JaXQAUdGTWXt.jpg",
       price: "€750/night",
       capacity: "4 Adults",
       bedType: "2 King Beds",
@@ -133,8 +129,6 @@ fetch('cities_countries.json')
     },
   ]
 
-
-  
   // Template responses
   const templateResponses = {
     greeting:
@@ -511,17 +505,17 @@ fetch('cities_countries.json')
             <span class="highlight">${cityName.substring(0, matchLength)}</span>${cityName.substring(matchLength)}
           `
 
-            // Changed code:
-            item.innerHTML = `
+          // Changed code:
+          item.innerHTML = `
               <span class="city-name">${highlightedName}</span>
               <span class="country-name">${city.country}</span>
             `
 
-            // Add click event to select city
-            item.addEventListener("click", () => {
-              cityInput.value = `${city.city}, ${city.country}`;
-              autocompleteDropdown.classList.remove("active");
-            })
+          // Add click event to select city
+          item.addEventListener("click", () => {
+            cityInput.value = `${city.city}, ${city.country}`
+            autocompleteDropdown.classList.remove("active")
+          })
 
           autocompleteDropdown.appendChild(item)
         })
