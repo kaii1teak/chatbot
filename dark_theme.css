@@ -250,11 +250,12 @@
   }
   
   .options-container.active {
-    height: 55%;
+    height: auto;
     opacity: 1;
     padding: 20px;
     margin-top: 20px;
     transform: translateY(0);
+    min-height: 30vh;
   }
   
   .options-header {
