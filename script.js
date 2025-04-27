@@ -941,11 +941,6 @@ document.addEventListener("DOMContentLoaded", () => {
     // Clone the template
     const paymentContent = paymentTemplate.content.cloneNode(true)
 
-    // Clear and show options container
-    optionsContainer.innerHTML = ""
-    optionsContainer.appendChild(paymentContent)
-    optionsContainer.classList.add("active")
-
     // Calculate total
     let itemType, itemName, dates, total
 
@@ -982,6 +977,12 @@ document.addEventListener("DOMContentLoaded", () => {
       summaryItems[2].innerHTML = summaryItems[2].innerHTML.replace("{{total}}", total)
     }
 
+    // Clear and show options container
+    optionsContainer.innerHTML = ""
+    optionsContainer.appendChild(paymentContent)
+    optionsContainer.classList.add("active")
+
+
     // Add event listener to complete payment button
     const completePaymentButton = paymentContent.querySelector("#complete-payment")
     if (completePaymentButton) {
@@ -989,6 +990,9 @@ document.addEventListener("DOMContentLoaded", () => {
     } else {
       console.error("Complete payment button not found")
     }
+
+
+
   }
 
   // Complete booking
@@ -1163,3 +1167,14 @@ document.addEventListener("DOMContentLoaded", () => {
   console.log("Setting up chat...")
   initChat()
 })
+
+
+
+// Add a window resize event listener to handle responsive adjustments
+window.addEventListener("resize", () => {
+  if (optionsContainer && optionsContainer.classList.contains("active")) {
+    // Ensure the container adjusts properly when window is resized
+    optionsContainer.style.maxHeight = "70vh"
+  }
+})
+

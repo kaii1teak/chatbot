@@ -270,7 +270,6 @@ body::after {
 
 .options-container.active {
   height: auto;
-  min-height: 70%;
   opacity: 1;
   padding: 20px;
   margin-top: 20px;
@@ -292,7 +291,6 @@ body::after {
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 15px;
   overflow-y: auto;
-  max-height: 100%;
   padding-right: 10px;
 }
 
